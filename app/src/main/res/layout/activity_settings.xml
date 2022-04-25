@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
+    tools:context=".SettingsActivity"
     android:background="@drawable/login_background">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/HomeToolbar"
+        android:id="@+id/SettingsToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/yellow"
@@ -17,27 +17,33 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="1dp">
 
-
         <ImageButton
-            android:id="@+id/settings"
+            android:id="@+id/settings_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/yellow"
-            android:src="@drawable/ic_home_settings" />
-
+            android:src="@drawable/ic_home_back"
+            android:background="@color/yellow"/>
     </androidx.appcompat.widget.Toolbar>
 
+    <TextView
+        android:id="@+id/chooseTheatre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose suitable Theatre for you"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/SettingsToolbar"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/yellow"/>
 
     <ListView
-        android:id="@+id/searchlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/HomeToolbar"
-        android:divider="@color/yellow"
-        android:dividerHeight="2dp"
+        android:layout_below="@id/chooseTheatre"
+        android:layout_marginTop="30dp"
         android:background="@color/yellow"
-        android:alpha="0.5"/>
-
+        android:alpha="0.5" />
 
 
 
