@@ -1,5 +1,8 @@
 package com.example.groupassignment;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -25,10 +28,19 @@ public class UserData {
     }
 
 
-    public boolean addUser(String username, String password){
+    public boolean addUser(String username, String password) throws NoSuchAlgorithmException {
+
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
 
         if(checkPassword(password) && !username.isEmpty()) {
-            users.add(new User(username, password));
+            md.update(password.getBytes());
+
+            byte[] digest = md.digest();
+            StringBuffer sb = new StringBuffer();
+            for(byte b : digest){
+                sb.append(String.format("%02x",b & 0xff));
+            }
+            users.add(new User(username, sb.toString()));
             return true;
         }
         else{
@@ -37,16 +49,17 @@ public class UserData {
 
     }
 
-    public boolean findUser(String username, String password){
-        /*if(Arrays.asList(users).contains(username) && Arrays.asList(users).contains(password)){
-            return true;
+    public boolean findUser(String username, String password) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-512");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for(byte b : digest){
+            sb.append(String.format("%02x",b & 0xff));
         }
-        else{
-            return false;
-        }*/
         for(int i=0;i<users.size();i++){
             User user = users.get(i);
-            if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+            if(user.getUsername().equals(username) && user.getPassword().equals(sb.toString())){
                 return true;
             }
         }

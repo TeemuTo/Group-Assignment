@@ -1,15 +1,5 @@
 package com.example.groupassignment;
-/*<androidx.appcompat.widget.Toolbar
-        android:id="@+id/HomeToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_home_menu"
-        tools:layout_editor_absoluteX="1dp"
-        app:menu="@menu/menu"/>*/
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 
