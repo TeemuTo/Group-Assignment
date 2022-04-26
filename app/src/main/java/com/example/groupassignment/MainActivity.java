@@ -1,5 +1,6 @@
 package com.example.groupassignment;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.groupassignment.databinding.ActivityMainBinding;
 import com.google.android.material.button.MaterialButton;
 
 import java.security.NoSuchAlgorithmException;
@@ -20,12 +22,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String p, u;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 try {
                     if(myUserData.findUser(u,p)){
-
+                        myUserData.setUser(u);
                         //home interface
                         startActivity(new Intent(MainActivity.this, HomeActivity.class));
                     }

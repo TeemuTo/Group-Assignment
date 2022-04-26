@@ -9,10 +9,12 @@ import java.util.Arrays;
 
 public class UserData {
 
-    public static int passwordLength = 8;
+    public static int passwordLength = 12;
+    public String user;
 
     //Singleton
     private static UserData instance = null;
+
     public static UserData getInstance(){
         if(instance == null) {
             instance = new UserData();
@@ -66,6 +68,15 @@ public class UserData {
         return false;
     }
 
+
+    public void setUser(String username){
+        this.user = username;
+    }
+
+    public String getUser(){
+        return user;
+    }
+
     public static boolean checkPassword(String password){
 
         if(password.length() < passwordLength) return false;
@@ -89,4 +100,5 @@ public class UserData {
     public static boolean checkNum(char c){
         return (c>='0' && c<='9');
     }
+
 }

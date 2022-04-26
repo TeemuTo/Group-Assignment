@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import androidx.appcompat.widget.SearchView;
@@ -32,6 +33,15 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        Button button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openWebview();
+            }
+        });
         toolbar = (Toolbar) findViewById(R.id.HomeToolbar);
         setSupportActionBar(toolbar);
 
@@ -57,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, name);
 
         searchlist.setAdapter(arrayAdapter);
+
+
 
     }
 
@@ -90,5 +102,9 @@ public class HomeActivity extends AppCompatActivity {
         });
         searchlist.setVisibility(View.GONE);
         return super.onCreateOptionsMenu(menu);
+    }
+    public void openWebview(){
+        Intent intent = new Intent(this, Webview.class);
+        startActivity(intent);
     }
 }

@@ -3,6 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.groupassignment">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
@@ -13,22 +19,16 @@
         android:theme="@style/Theme.GroupAssignment"
         tools:replace="android:appComponentFactory">
         <activity
+            android:name=".Webview"
+            android:exported="false" />
+        <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
             android:name=".GiveReview"
             android:exported="true" />
-
         <activity
             android:name=".HomeActivity"
-            android:exported="true"/>
-
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true"
-            android:parentActivityName=".HomeActivity" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +36,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
