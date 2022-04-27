@@ -7,7 +7,7 @@ public class Review {
     //Singleton
     private static Review instance = null;
 
-    public static Review getReviewInstance() {
+    public static Review getInstance() {
         if (instance == null) {
             instance = new Review();
         }
@@ -18,6 +18,10 @@ public class Review {
 
     public Review() {
         reviews = new ArrayList<>();
+
+        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 5));
+        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 4));
+        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 3));
 
     }
 

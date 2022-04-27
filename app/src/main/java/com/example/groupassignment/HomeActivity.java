@@ -32,8 +32,9 @@ public class HomeActivity extends AppCompatActivity {
     ImageButton settings;
     ImageButton favorite;
     Toolbar toolbar;
+    Spinner teatterispinner;
 
-    private Spinner teatterispinner;
+    private String movie;
 
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> name;
@@ -42,6 +43,8 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        MovieData myMovieData = MovieData.getInstance();
 
         teatterispinner = findViewById(R.id.teatterispinner);
         List<String> teatterit = new ArrayList<>();
@@ -130,6 +133,15 @@ public class HomeActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, name);
 
         searchlist.setAdapter(arrayAdapter);
+
+        searchlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                movie = name.get(i);
+                myMovieData.setMovie(movie);
+                startActivity(new Intent(HomeActivity.this, GiveReview.class));
+            }
+        });
 
         favorite.setOnClickListener(new View.OnClickListener() {
             @Override
