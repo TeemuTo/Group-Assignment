@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class GiveReview extends AppCompatActivity {
 
-    int rate;
+    private int rating;
     String commentText;
 
     ImageButton back;
@@ -29,6 +29,7 @@ public class GiveReview extends AppCompatActivity {
     private ArrayList<String> reviews;
     private ArrayAdapter<String> list;
     private String user;
+    private String movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,9 @@ public class GiveReview extends AppCompatActivity {
 
         Review myReview = Review.getInstance();
         UserData myUserData = UserData.getInstance();
-        myUserData.getUser();
+        MovieData myMovieData = MovieData.getInstance();
+        user = myUserData.getUser();
+        movie = myMovieData.getMovie();
 
         reviews = new ArrayList<>();
         reviews.add("Teemu");
@@ -50,7 +53,6 @@ public class GiveReview extends AppCompatActivity {
         stars = (RatingBar) findViewById(R.id.ratingBar);
         comment = (EditText) findViewById(R.id.comment);
         ratinglist = (ListView) findViewById(R.id.ratinglist);
-
 
         list = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, reviews);
         ratinglist.setAdapter(list);
@@ -67,15 +69,17 @@ public class GiveReview extends AppCompatActivity {
         stars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                rate = (int) v;
+                int rate = (int) v;
+                myReview.setRate(rate);
             }
         });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rating = myReview.getRate();
                 commentText = comment.getText().toString();
-                if(myReview.addReview("movie", user, commentText, rate)){
+                if(myReview.addReview(movie, user, commentText, rating)){
                     //rating is added
                     //Change visibility (only listview is visible and the movie logo)
                 }

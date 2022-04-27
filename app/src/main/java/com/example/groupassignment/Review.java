@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Review {
 
+    private int rating;
     //Singleton
     private static Review instance = null;
 
@@ -18,10 +19,6 @@ public class Review {
 
     public Review() {
         reviews = new ArrayList<>();
-
-        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 5));
-        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 4));
-        reviews.add(new ReviewStorage("elokuva", "minä", "hyvä on", 3));
 
     }
 
@@ -39,14 +36,23 @@ public class Review {
         //username is known
     }
 
-    public boolean readReview(String movie){
+    public ArrayList<ReviewStorage> readReview(String movie){
+        ArrayList<ReviewStorage> list;
+        list = new ArrayList<>();
         for(int i=0;i<reviews.size();i++){
             ReviewStorage review = reviews.get(i);
             if(review.getMovie().equals(movie)){
+                list.add(new ReviewStorage(review.getMovie(), review.getUsername(), review.getComment(), review.getStars()));
             }
         }
-        return false;
+        return list;
     }
 
+    public void setRate(int rate){
+        this.rating = rate;
+    }
 
+    public int getRate(){
+        return rating;
+    }
 }
