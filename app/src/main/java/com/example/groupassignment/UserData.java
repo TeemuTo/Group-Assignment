@@ -30,7 +30,7 @@ public class UserData {
     }
 
 
-    public boolean addUser(String username, String password) throws NoSuchAlgorithmException {
+    public boolean addUser(String username, String password, String city, String email) throws NoSuchAlgorithmException {
 
         MessageDigest md = MessageDigest.getInstance("SHA-512");
 
@@ -42,7 +42,7 @@ public class UserData {
             for(byte b : digest){
                 sb.append(String.format("%02x",b & 0xff));
             }
-            users.add(new User(username, sb.toString()));
+            users.add(new User(username, sb.toString(), city, email));
             return true;
         }
         else{

@@ -5,26 +5,35 @@ import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class HomeActivity extends AppCompatActivity {
 
     ListView searchlist;
     ImageButton settings;
+    ImageButton favorite;
     Toolbar toolbar;
+
+    private Spinner teatterispinner;
 
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> name;
@@ -34,6 +43,60 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        teatterispinner = findViewById(R.id.teatterispinner);
+        List<String> teatterit = new ArrayList<>();
+        teatterit.add(0,"Valitse teatteri");
+        teatterit.add("KINOPALATSI");
+        teatterit.add("Espoo");
+        teatterit.add("OMENA");
+        teatterit.add("SELLO");
+        teatterit.add("PLAZA");
+        teatterit.add("ITIS");
+        teatterit.add("KINOPALATSI");
+        teatterit.add("MAXIM");
+        teatterit.add("TENNISPALATSI");
+        teatterit.add("FLAMINGO");
+        teatterit.add("FANTASIA");
+        teatterit.add("SCALA");
+        teatterit.add("KUVAPALATSI");
+        teatterit.add("STRAND");
+        teatterit.add("PROMENADI");
+        teatterit.add("CINE ATLAS");
+        teatterit.add("PLEVNA");
+
+
+
+
+        ArrayAdapter<String> dataAdapter;
+        dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, teatterit);
+
+        //layout style
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //liitetään dataadapter spinneriin
+        teatterispinner.setAdapter(dataAdapter);
+
+        teatterispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapterView.getItemAtPosition(i).equals("Valitse teatteri"))
+                {
+
+                }
+                else{
+                    String item = adapterView.getItemAtPosition(i).toString();
+
+                    Toast.makeText(HomeActivity.this, "Valittu: " +item, Toast.LENGTH_SHORT).show();
+                    //jos haluaa tehdä muuta valinnassa niin tee tähän
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +117,7 @@ public class HomeActivity extends AppCompatActivity {
 
         searchlist = findViewById(R.id.searchlist);
         settings = (ImageButton) findViewById(R.id.settings);
-
+        favorite = (ImageButton) findViewById(R.id.Favorite);
 
 
         settings.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +131,13 @@ public class HomeActivity extends AppCompatActivity {
 
         searchlist.setAdapter(arrayAdapter);
 
-
+        favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //to favoritelist
+                startActivity(new Intent(HomeActivity.this, FavoriteActivity.class));
+            }
+        });
 
     }
 
