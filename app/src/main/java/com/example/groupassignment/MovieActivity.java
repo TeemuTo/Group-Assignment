@@ -21,6 +21,8 @@ public class MovieActivity extends AppCompatActivity {
     TextView duration;
     TextView IMDB;
 
+    int nro = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +45,21 @@ public class MovieActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MovieActivity.this, HomeActivity.class));
+
             }
         });
 
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                like.setImageResource(R.drawable.ic_movie_liked);
+               if(nro%2==0) {
+                   like.setImageResource(R.drawable.ic_movie_liked);
+                   nro++;
+               }
+               else{
+                   like.setImageResource((R.drawable.ic_movie_like));
+                   nro++;
+               }
             }
         });
 
