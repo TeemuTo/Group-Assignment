@@ -13,7 +13,7 @@ public class ReviewStorage {
         stars = s;
     }
 
-    public String getMovie(){return movie;}
+    public String getKino(){return movie;}
     public String getUsername(){return username;}
     public String getComment(){return comment;}
     public int getStars(){return stars;}

@@ -15,8 +15,8 @@ public class Movie {
         story = s;
     }
 
-    public String getUsername(){return movie;}
-    public String getPassword(){return duration;}
+    public String getFilm(){return movie;}
+    public String getDuration(){return duration;}
     public float getIMDB(){return IMDB;}
     public int getAgeRate(){return ageRate;}
     public String getStory(){return story;}

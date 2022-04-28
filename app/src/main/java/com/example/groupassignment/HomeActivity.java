@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 movie = name.get(i);
                 myMovieData.setMovie(movie);
-                startActivity(new Intent(HomeActivity.this, GiveReview.class));
+                startActivity(new Intent(HomeActivity.this, MovieActivity.class));
             }
         });
 

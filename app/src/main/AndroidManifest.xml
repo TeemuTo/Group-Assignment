@@ -8,7 +8,7 @@
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GroupAssignment"
         tools:replace="android:appComponentFactory">
+        <activity
+            android:name=".MovieActivity"
+            android:exported="false" />
         <activity
             android:name=".FavoriteActivity"
             android:exported="false" />
@@ -31,7 +34,6 @@
         <activity
             android:name=".GiveReview"
             android:exported="true" />
-
         <activity
             android:name=".HomeActivity"
             android:exported="true">

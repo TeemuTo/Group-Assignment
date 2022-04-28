@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MovieActivity"
+    android:background="@color/black">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/MovieToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/yellow"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp">
+
+    <ImageButton
+        android:id="@+id/movie_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_home_back"
+        android:background="@color/yellow"/>
+
+    <ImageButton
+        android:id="@+id/movie_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:src="@drawable/ic_movie_like"
+        android:background="@color/yellow" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/MovieTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/MovieToolbar"
+        android:layout_marginTop="30dp"
+        android:text="Title"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
+        android:textSize="30dp"/>
+
+    <ImageView
+        android:id="@+id/MovieLogo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@id/MovieTitle"
+        android:layout_marginTop="10dp"
+        android:gravity="fill"
+        app:srcCompat="@drawable/finnkino"
+        android:alpha="1"/>
+
+    <TextView
+        android:id="@+id/MovieDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MovieLogo"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="duration"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"/>
+    <TextView
+        android:id="@+id/IMDBReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MovieLogo"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:text="IMDB"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"/>
+
+    <TextView
+        android:id="@+id/MovieStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MovieDuration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Story"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/toReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/MovieStory"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/yellow"
+        android:text="Give review"
+        android:textColor="@color/black" />
+
+
+
+</RelativeLayout>

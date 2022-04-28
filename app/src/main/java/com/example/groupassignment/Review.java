@@ -41,8 +41,8 @@ public class Review {
         list = new ArrayList<>();
         for(int i=0;i<reviews.size();i++){
             ReviewStorage review = reviews.get(i);
-            if(review.getMovie().equals(movie)){
-                list.add(new ReviewStorage(review.getMovie(), review.getUsername(), review.getComment(), review.getStars()));
+            if(review.getKino().equals(movie)){
+                list.add(new ReviewStorage(review.getKino(), review.getUsername(), review.getComment(), review.getStars()));
             }
         }
         return list;
