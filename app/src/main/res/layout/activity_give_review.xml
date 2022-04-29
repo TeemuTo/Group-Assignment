@@ -81,12 +81,11 @@
         <ListView
             android:id="@+id/ratinglist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@id/submitrating"
             android:layout_marginTop="10dp"
             android:background="@color/yellow"
-            android:alpha="0.5"
-            tools:listitem="@layout/review_item"/>
+            android:alpha="0.5" />
     </RelativeLayout>
 
 

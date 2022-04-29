@@ -4,9 +4,9 @@ public class ReviewStorage {
     private String movie;
     private String username;
     private String comment;
-    private int stars;
+    private String stars;
 
-    public ReviewStorage(String m, String u, String c, int s){
+    public ReviewStorage(String m, String u, String c, String s){
         movie = m;
         username = u;
         comment = c;
@@ -16,5 +16,5 @@ public class ReviewStorage {
     public String getKino(){return movie;}
     public String getUsername(){return username;}
     public String getComment(){return comment;}
-    public int getStars(){return stars;}
+    public String getStars(){return stars;}
 }

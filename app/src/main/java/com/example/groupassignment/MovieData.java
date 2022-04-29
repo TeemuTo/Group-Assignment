@@ -26,8 +26,8 @@ public class MovieData {
     private ArrayList<Movie> movies;
 
     public MovieData(){
-        movies = new ArrayList<>();
-        movies.add(new Movie("Elokuva", "1 t 30 min", (float) 6.9, 15, "ELokuva kertoo elokuvista."));
+        movies = new ArrayList<Movie>();
+        movies.add(new Movie("Elokuva", "1 t 30 min", "6.9", 15, "Elokuva kertoo elokuvista."));
 
     }
 
@@ -46,6 +46,46 @@ public class MovieData {
 
     public String getMovie(){
         return film;
+    }
+
+    public String getTime(){
+        for(int i=0;i<movies.size();i++){
+            Movie movie = movies.get(i);
+            if(film.equals(movie.getFilm())){
+                return movie.getDuration();
+            }
+        }
+        return "no time";
+    }
+
+    public String getimdb(){
+        for(int i=0;i<movies.size();i++){
+            Movie movie = movies.get(i);
+            if(film.equals(movie.getFilm())){
+                return movie.getIMDB();
+            }
+        }
+        return "0.0";
+    }
+
+    public int getAge(){
+        for(int i=0;i<movies.size();i++){
+            Movie movie = movies.get(i);
+            if(film.equals(movie.getFilm())){
+                return (int) movie.getAgeRate();
+            }
+        }
+        return (int) 99;
+    }
+
+    public String getSummary(){
+        for(int i=0;i<movies.size();i++){
+            Movie movie = movies.get(i);
+            if(film.equals(movie.getFilm())){
+                return movie.getStory();
+            }
+        }
+        return "No overview";
     }
 
     public void addFavorite(String movie){

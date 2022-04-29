@@ -20,8 +20,11 @@ public class MovieActivity extends AppCompatActivity {
     ImageView logo;
     TextView duration;
     TextView IMDB;
+    TextView story;
 
     int nro = 2;
+
+    private String movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,8 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie);
 
         MovieData myMovieData = MovieData.getInstance();
+
+        movie = myMovieData.getMovie();
 
 
         back = (ImageButton) findViewById(R.id.movie_back);
@@ -38,9 +43,17 @@ public class MovieActivity extends AppCompatActivity {
         logo = (ImageView) findViewById(R.id.MovieLogo);
         duration = (TextView) findViewById(R.id.MovieDuration);
         IMDB = (TextView) findViewById(R.id.IMDBReview);
+        story = (TextView) findViewById(R.id.MovieStory);
 
         //setText by every movie
         //image is setImageResource
+        title.setText(movie);
+        duration.setText(myMovieData.getTime());
+        IMDB.setText(myMovieData.getimdb());
+        story.setText(myMovieData.getSummary());
+
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +80,7 @@ public class MovieActivity extends AppCompatActivity {
         toReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(new Intent(MovieActivity.this, GiveReview.class));
             }
         });

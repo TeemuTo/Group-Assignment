@@ -13,34 +13,35 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 
-public class ReviewList extends ArrayAdapter<String> {
+public class ReviewList extends ArrayAdapter<ReviewStorage> {
 
-    private Activity context;
-    private ArrayList<String> user;
-    private ArrayList<String> comment;
-    private ArrayList<Integer> stars;
+    private Context context;
+    ArrayList<ReviewStorage> reviews;
 
-    public ReviewList(Activity context,ArrayList<String> user, ArrayList<String> comment, ArrayList<Integer> stars) {
-        super(context, R.layout.review_item);
+    public ReviewList(Activity context,ArrayList<ReviewStorage> reviews) {
+        super(context, R.layout.review_item, reviews);
 
         this.context=context;
-        this.user=user;
-        this.comment=comment;
-        this.stars=stars;
+        this.reviews = reviews;
+
+
     }
 
     public View getView(int position, View view, ViewGroup parent){
-        LayoutInflater inflater = context.getLayoutInflater();
-        View rowView=inflater.inflate(R.layout.review_item, null, true);
+        View v = view;
+        if(v==null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            v = inflater.inflate(R.layout.review_item, null);
+        }
 
-        TextView person = (TextView) rowView.findViewById(R.id.PersonName);
-        TextView review = (TextView) rowView.findViewById(R.id.comment);
-        TextView star = (TextView) rowView.findViewById((R.id.CountOfStars));
+        TextView user = v.findViewById(R.id.PersonName);
+        TextView comment = v.findViewById(R.id.ReviewComment);
+        TextView stars = v.findViewById(R.id.CountOfStars);
 
-        person.setText(user.get(position));
-        review.setText(comment.get(position));
-        star.setText(stars.get(position));
+        user.setText(reviews.get(position).getUsername());
+        comment.setText(reviews.get(position).getComment());
+        stars.setText(reviews.get(position).getStars());
 
-        return rowView;
+        return v;
     }
 }

@@ -13,11 +13,15 @@ import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.example.groupassignment.databinding.ActivityMainBinding;
+
 import java.util.ArrayList;
 
 public class GiveReview extends AppCompatActivity {
 
-    private int rating;
+    ActivityMainBinding binding;
+
+    String rating;
     String commentText;
 
     ImageButton back;
@@ -26,12 +30,17 @@ public class GiveReview extends AppCompatActivity {
     EditText comment;
     ListView ratinglist;
 
+    ArrayList<String> writer, rev;
+    ArrayList<Integer> star;
+
+
     private String user;
     private String movie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_give_review);
 
         Review myReview = Review.getInstance();
@@ -40,13 +49,18 @@ public class GiveReview extends AppCompatActivity {
         user = myUserData.getUser();
         movie = myMovieData.getMovie();
 
-        ReviewList reviews = new ReviewList(this, myReview.readReviewWriter(movie), myReview.readReviewComment(movie), myReview.readReviewStars(movie));
+
+        ArrayList<ReviewStorage> review= myReview.readReview(movie);
+
+
 
         back = (ImageButton) findViewById(R.id.review_back);
         submit = (Button) findViewById(R.id.submitrating);
         stars = (RatingBar) findViewById(R.id.ratingBar);
         comment = (EditText) findViewById(R.id.comment);
         ratinglist = (ListView) findViewById(R.id.ratinglist);
+
+        ReviewList reviews = new ReviewList(this, review);
 
         ratinglist.setAdapter(reviews);
 
@@ -62,7 +76,7 @@ public class GiveReview extends AppCompatActivity {
         stars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                int rate = (int) v;
+                String rate = String.valueOf((int) v);
                 myReview.setRate(rate);
             }
         });
@@ -70,7 +84,7 @@ public class GiveReview extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rating = myReview.getRate();
+                rating = (String) myReview.getRate();
                 commentText = comment.getText().toString();
                 if(myReview.addReview(movie, user, commentText, rating)){
                     //rating is added
