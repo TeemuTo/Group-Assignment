@@ -19,6 +19,9 @@ public class Review {
 
     public Review() {
         reviews = new ArrayList<>();
+        reviews.add(new ReviewStorage("Elokuva", "Teemu", "Aivan loistava", 5));
+        reviews.add(new ReviewStorage("Elokuva", "Henri", "ihan ok", 3));
+        reviews.add(new ReviewStorage("Elokuva", "Jyri", "se on elokuva", 1));
 
     }
 
@@ -36,17 +39,42 @@ public class Review {
         //username is known
     }
 
-    public ArrayList<ReviewStorage> readReview(String movie){
-        ArrayList<ReviewStorage> list;
+    public ArrayList<String> readReviewWriter(String movie){
+        ArrayList<String> list;
         list = new ArrayList<>();
         for(int i=0;i<reviews.size();i++){
             ReviewStorage review = reviews.get(i);
             if(review.getKino().equals(movie)){
-                list.add(new ReviewStorage(review.getKino(), review.getUsername(), review.getComment(), review.getStars()));
+                list.add(review.getUsername());
             }
         }
         return list;
     }
+
+    public ArrayList<String> readReviewComment(String movie){
+        ArrayList<String> list;
+        list = new ArrayList<>();
+        for(int i=0;i<reviews.size();i++){
+            ReviewStorage review = reviews.get(i);
+            if(review.getKino().equals(movie)){
+                list.add(review.getComment());
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Integer> readReviewStars(String movie){
+        ArrayList<Integer> list;
+        list = new ArrayList<>();
+        for(int i=0;i<reviews.size();i++){
+            ReviewStorage review = reviews.get(i);
+            if(review.getKino().equals(movie)){
+                list.add(review.getStars());
+            }
+        }
+        return list;
+    }
+
 
     public void setRate(int rate){
         this.rating = rate;

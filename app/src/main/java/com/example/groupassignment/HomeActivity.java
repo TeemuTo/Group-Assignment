@@ -48,7 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 
         teatterispinner = findViewById(R.id.teatterispinner);
         List<String> teatterit = new ArrayList<>();
-        teatterit.add(0,"Valitse teatteri");
+        teatterit.add(0,"Choose Theatre");
         teatterit.add("KINOPALATSI");
         teatterit.add("Espoo");
         teatterit.add("OMENA");
@@ -82,14 +82,14 @@ public class HomeActivity extends AppCompatActivity {
         teatterispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (adapterView.getItemAtPosition(i).equals("Valitse teatteri"))
+                if (adapterView.getItemAtPosition(i).equals("Choose Theatre"))
                 {
 
                 }
                 else{
                     String item = adapterView.getItemAtPosition(i).toString();
 
-                    Toast.makeText(HomeActivity.this, "Valittu: " +item, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeActivity.this, "You Chose: " +item, Toast.LENGTH_SHORT).show();
                     //jos haluaa tehdä muuta valinnassa niin tee tähän
                 }
 
@@ -111,11 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.HomeToolbar);
         setSupportActionBar(toolbar);
 
-        name = new ArrayList<>();
-        name.add("Teemu");
-        name.add("Henri");
-        name.add("Jyri");
-        name.add("Wenla");
+        name = myMovieData.searchMovies();
 
 
         searchlist = findViewById(R.id.searchlist);

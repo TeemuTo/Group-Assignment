@@ -26,8 +26,6 @@ public class GiveReview extends AppCompatActivity {
     EditText comment;
     ListView ratinglist;
 
-    private ArrayList<String> reviews;
-    private ArrayAdapter<String> list;
     private String user;
     private String movie;
 
@@ -42,11 +40,7 @@ public class GiveReview extends AppCompatActivity {
         user = myUserData.getUser();
         movie = myMovieData.getMovie();
 
-        reviews = new ArrayList<>();
-        reviews.add("Teemu");
-        reviews.add("Henri");
-        reviews.add("Jyri");
-        reviews.add("Wenla");
+        ReviewList reviews = new ReviewList(this, myReview.readReviewWriter(movie), myReview.readReviewComment(movie), myReview.readReviewStars(movie));
 
         back = (ImageButton) findViewById(R.id.review_back);
         submit = (Button) findViewById(R.id.submitrating);
@@ -54,8 +48,7 @@ public class GiveReview extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.comment);
         ratinglist = (ListView) findViewById(R.id.ratinglist);
 
-        list = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, reviews);
-        ratinglist.setAdapter(list);
+        ratinglist.setAdapter(reviews);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -30,6 +30,7 @@ public class MovieActivity extends AppCompatActivity {
 
         MovieData myMovieData = MovieData.getInstance();
 
+
         back = (ImageButton) findViewById(R.id.movie_back);
         like = (ImageButton) findViewById(R.id.movie_like);
         toReview = (MaterialButton) findViewById(R.id.toReview);

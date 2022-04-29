@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Group Assignment</string>
-    <string name="changeLang">Change language</string>
+    <string name="changeLang">Vaihda kieli</string>
 </resources>

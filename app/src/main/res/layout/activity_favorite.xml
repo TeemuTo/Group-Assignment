@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,42 +7,50 @@
     android:background="@drawable/login_background"
     tools:context=".FavoriteActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/FavoriteToolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/favorite_back"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/FavoriteToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/favorite_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_home_back"
+                android:background="@color/yellow"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/favText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home_back"
-            android:background="@color/yellow"/>
+            android:layout_centerHorizontal="true"
+            android:text="Favorites"
+            android:textColor="@color/yellow"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_below="@id/FavoriteToolbar"
+            android:layout_marginTop="30dp"/>
 
-    </androidx.appcompat.widget.Toolbar>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/favText"
+            android:layout_marginTop="10dp"
+            android:background="@color/yellow"
+            android:alpha="0.5"/>
 
-    <TextView
-        android:id="@+id/favText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Favorites"
-        android:textColor="@color/yellow"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_below="@id/FavoriteToolbar"
-        android:layout_marginTop="30dp"/>
+    </RelativeLayout>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/favText"
-        android:layout_marginTop="10dp"
-        android:background="@color/yellow"
-        android:alpha="0.5"/>
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

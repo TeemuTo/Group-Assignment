@@ -3,7 +3,7 @@ package com.example.groupassignment;
 public class Movie {
     private String movie;
     private String duration;
-    private float IMDB;
+    private double IMDB;
     private int ageRate;
     private String story;
 
@@ -17,7 +17,7 @@ public class Movie {
 
     public String getFilm(){return movie;}
     public String getDuration(){return duration;}
-    public float getIMDB(){return IMDB;}
+    public double getIMDB(){return IMDB;}
     public int getAgeRate(){return ageRate;}
     public String getStory(){return story;}
 }
