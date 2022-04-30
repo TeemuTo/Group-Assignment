@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Group Assignment</string>
+    <string name="app_name"> </string>
     <string name="changeLang">Vaihda kieli</string>
+    <string name="logoutButton">Kirjaudu ulos</string>
+    <string name="RegisterText">Rekisteröidy</string>
+    <string name="email">Sähköposti</string>
+    <string name="city">Kaupunki</string>
+    <string name="RegisterUsername">Käyttäjänimi</string>
+    <string name="RegisterPassword">Salasana</string>
+    <string name="Adduser">Lisää käyttäjä</string>
+    <string name="GiveReviewButton">Anna arvostelu</string>
+    <string name="SigninButton">Kirjaudu sisään</string>
+    <string name="toRegisterText">Jos olet uusi, rekisteröidy täällä:</string>
+    <string name="toRegister">Rekiteröidy</string>
+    <string name="AuthenticateText">Klikkaa sormenjälkitunnistukseen</string>
+    <string name="Authentication">Sormenjälkitunnistus</string>
+    <string name="BuyTicket">Osta lippu</string>
+    <string name="RateText">Anna arvostelu</string>
+    <string name="WriteReview">Kirjoita kommentti...</string>
+    <string name="SubmitReview">Lähetä Arvostelu</string>
+    <string name="Favorites">Suosikit</string>
 </resources>

@@ -48,7 +48,7 @@
             android:layout_below="@id/HomeToolbar"
             android:layout_marginTop="100dp"
             android:layout_centerHorizontal="true"
-            android:text="Buy tickets"
+            android:text="@string/BuyTicket"
             android:textColor="@color/black"/>
 
         <ImageButton

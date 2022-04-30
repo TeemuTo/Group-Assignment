@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Group Assignment</string>
+    <string name="app_name"> </string>
     <string name="changeLang">Change language</string>
+    <string name="logoutButton">Logout</string>
+    <string name="RegisterText">Register</string>
+    <string name="email">E-mail</string>
+    <string name="city">City</string>
+    <string name="RegisterUsername">Username</string>
+    <string name="RegisterPassword">Password</string>
+    <string name="Adduser">Add user</string>
+    <string name="GiveReviewButton">Give Review</string>
+    <string name="SigninButton">Sign in</string>
+    <string name="toRegisterText">If you are new, register here:</string>
+    <string name="toRegister">Register</string>
+    <string name="AuthenticateText">Click to authenticate</string>
+    <string name="Authentication">Authenticate</string>
+    <string name="BuyTicket">Buy ticket</string>
+    <string name="RateText">Rate the movie</string>
+    <string name="WriteReview">Write review...</string>
+    <string name="SubmitReview">Submit review</string>
+    <string name="Favorites">Favorites</string>
 </resources>

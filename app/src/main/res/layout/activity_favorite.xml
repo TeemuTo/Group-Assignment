@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Favorites"
+            android:text="@string/Favorites"
             android:textColor="@color/yellow"
             android:textSize="30dp"
             android:textStyle="bold"
@@ -42,6 +42,7 @@
             android:layout_marginTop="30dp"/>
 
         <ListView
+            android:id="@+id/favlist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/favText"

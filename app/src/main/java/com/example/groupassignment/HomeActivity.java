@@ -111,7 +111,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.HomeToolbar);
         setSupportActionBar(toolbar);
 
-        name = myMovieData.searchMovies();
+
 
 
         searchlist = findViewById(R.id.searchlist);
@@ -126,6 +126,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        name = myMovieData.searchMovies();
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, name);
 
         searchlist.setAdapter(arrayAdapter);

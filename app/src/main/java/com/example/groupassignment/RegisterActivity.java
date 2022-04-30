@@ -10,8 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,6 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     MaterialButton register;
     String p, u, c, e;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +35,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         UserData myUserData = UserData.getInstance();
 
+        loadData();
         addusername = (EditText) findViewById(R.id.addusername);
         addpassword = (EditText) findViewById(R.id.addpassword);
         city = (EditText) findViewById(R.id.city);
         email = (EditText) findViewById(R.id.addmail);
         register = (MaterialButton) findViewById(R.id.adduser);
-
 
 
         register.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(myUserData.addUser(u, p, c, e)){
                         //Added user
                         //Go back to sign in interface
+                        saveData();
                         startActivity(new Intent(RegisterActivity.this, MainActivity.class));
 
                     }
@@ -65,5 +72,32 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void saveData(){
+        UserData myUserData = UserData.getInstance();
+        ArrayList<User> users = myUserData.getUsers();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(users);
+        editor.putString("user list", json);
+        editor.apply();
+    }
+
+    private void loadData(){
+        UserData myUserData = UserData.getInstance();
+        ArrayList<User> users = myUserData.getUsers();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("user list", null);
+        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        users = gson.fromJson(json, type);
+
+        if(users == null){
+            users = new ArrayList<>();
+        }
     }
 }

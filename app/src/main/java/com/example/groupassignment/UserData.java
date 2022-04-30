@@ -68,6 +68,9 @@ public class UserData {
         return false;
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 
     public void setUser(String username){
         this.user = username;

@@ -26,7 +26,7 @@
             android:id="@+id/username"
             android:layout_below="@id/finnkino"
             android:background="#30ffffff"
-            android:hint="Username"
+            android:hint="@string/RegisterUsername"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_margin="20dp"
@@ -40,7 +40,7 @@
             android:id="@+id/password"
             android:layout_below="@id/username"
             android:background="#30ffffff"
-            android:hint="Password"
+            android:hint="@string/RegisterPassword"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_margin="20dp"
@@ -60,7 +60,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/yellow"
-            android:text="SIGN IN"
+            android:text="@string/SigninButton"
             android:textColor="@color/black"
             android:visibility="visible" />
 
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/register"
             android:layout_below="@id/loginbutton"
-            android:text="If you are new, register here:"
+            android:text="@string/toRegisterText"
             android:textColor="@color/yellow"
             android:gravity="center"
             android:layout_marginTop="20dp"/>
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/registerbutton"
             android:layout_below="@id/register"
-            android:text="REGISTER"
+            android:text="@string/toRegister"
             android:textColor="@color/black"
             android:backgroundTint="@color/yellow"
             android:layout_centerHorizontal="true"
@@ -92,7 +92,7 @@
             android:layout_below="@id/registerbutton"
             android:layout_marginTop="20dp"
             android:layout_centerHorizontal="true"
-            android:text="Click button to authenticate"
+            android:text="@string/AuthenticateText"
             android:textColor="@color/yellow" />
 
         <Button
@@ -104,7 +104,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:drawablePadding="10dp"
-            android:text="Authenticate"
+            android:text="@string/Authentication"
             android:textColor="@color/black"/>
     </RelativeLayout>
 

@@ -3,6 +3,7 @@ package com.example.groupassignment;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,7 +15,10 @@ import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.groupassignment.databinding.ActivityMainBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class GiveReview extends AppCompatActivity {
@@ -30,8 +34,7 @@ public class GiveReview extends AppCompatActivity {
     EditText comment;
     ListView ratinglist;
 
-    ArrayList<String> writer, rev;
-    ArrayList<Integer> star;
+    ArrayList<ReviewStorage> review;
 
 
     private String user;
@@ -43,6 +46,7 @@ public class GiveReview extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_give_review);
 
+        loadData();
         Review myReview = Review.getInstance();
         UserData myUserData = UserData.getInstance();
         MovieData myMovieData = MovieData.getInstance();
@@ -50,7 +54,7 @@ public class GiveReview extends AppCompatActivity {
         movie = myMovieData.getMovie();
 
 
-        ArrayList<ReviewStorage> review= myReview.readReview(movie);
+        review= myReview.readReview(movie);
 
 
 
@@ -89,11 +93,35 @@ public class GiveReview extends AppCompatActivity {
                 if(myReview.addReview(movie, user, commentText, rating)){
                     //rating is added
                     //Change visibility (only listview is visible and the movie logo)
+                    saveData();
                 }
                 else{
                     Toast.makeText(GiveReview.this, "Remember to give stars and write a comment!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void saveData(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(review);
+        editor.putString("review list", json);
+        editor.apply();
+    }
+
+    private void loadData(){
+
+        SharedPreferences sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("review list", null);
+        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        review = gson.fromJson(json, type);
+
+        if(review == null){
+            review = new ArrayList<>();
+        }
     }
 }

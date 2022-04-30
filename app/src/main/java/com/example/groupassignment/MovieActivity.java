@@ -22,8 +22,6 @@ public class MovieActivity extends AppCompatActivity {
     TextView IMDB;
     TextView story;
 
-    int nro = 2;
-
     private String movie;
 
     @Override
@@ -52,6 +50,29 @@ public class MovieActivity extends AppCompatActivity {
         IMDB.setText(myMovieData.getimdb());
         story.setText(myMovieData.getSummary());
 
+        if(myMovieData.getImage()){
+            like.setImageResource(R.drawable.ic_movie_like);
+        }
+        else{
+            like.setImageResource((R.drawable.ic_movie_liked));
+        }
+
+
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(myMovieData.getImage()) {
+                    myMovieData.setLiked();
+                    myMovieData.addFavorite(movie);
+                    like.setImageResource((R.drawable.ic_movie_liked));
+                }
+                else{
+                    myMovieData.setLike();
+                    myMovieData.removeFavorite(movie);
+                    like.setImageResource(R.drawable.ic_movie_like);
+                }
+            }
+        });
 
 
 
@@ -63,19 +84,6 @@ public class MovieActivity extends AppCompatActivity {
             }
         });
 
-        like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               if(nro%2==0) {
-                   like.setImageResource(R.drawable.ic_movie_liked);
-                   nro++;
-               }
-               else{
-                   like.setImageResource((R.drawable.ic_movie_like));
-                   nro++;
-               }
-            }
-        });
 
         toReview.setOnClickListener(new View.OnClickListener() {
             @Override

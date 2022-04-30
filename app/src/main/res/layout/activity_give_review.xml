@@ -33,7 +33,7 @@
             android:id="@+id/ratingtext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rate this movie"
+            android:text="@string/RateText"
             android:textColor="@color/yellow"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -61,7 +61,7 @@
             android:layout_margin="15dp"
             android:background="#30ffffff"
             android:padding="10dp"
-            android:hint="Write rating..."
+            android:hint="@string/WriteReview"
             android:textColor="@color/white"
             android:textColorHint="@color/white"/>
 
@@ -74,7 +74,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/yellow"
-            android:text="Submit Rating"
+            android:text="@string/SubmitReview"
             android:textColor="@color/black"/>
 
 

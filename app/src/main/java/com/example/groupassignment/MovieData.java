@@ -13,6 +13,8 @@ public class MovieData {
     private static MovieData instance = null;
     private String film;
 
+    private boolean image = true;
+
     private ArrayList<String> favorites;
     private ArrayList<String> search;
 
@@ -28,6 +30,9 @@ public class MovieData {
     public MovieData(){
         movies = new ArrayList<Movie>();
         movies.add(new Movie("Elokuva", "1 t 30 min", "6.9", 15, "Elokuva kertoo elokuvista."));
+
+        favorites = new ArrayList<String>();
+        favorites.add("No movies yet");
 
     }
 
@@ -89,8 +94,14 @@ public class MovieData {
     }
 
     public void addFavorite(String movie){
-        favorites = new ArrayList<String>();
         favorites.add(movie);
+    }
+
+    public void removeFavorite(String movie){
+        if(favorites.size()==1){
+            favorites.add("No movies yet");
+        }
+        favorites.remove(movie);
     }
 
     public boolean checkFavorite(String movie){
@@ -103,11 +114,25 @@ public class MovieData {
     }
 
     public ArrayList<String> listFavorite(){
+        if(favorites.size()==2){
+            favorites.remove("No movies yet");
+        }
         return favorites;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void sortByIMDB(){
         Comparator<Movie> compare = Comparator.comparing(Movie::getIMDB);
+    }
+    public void setLike(){
+        this.image = true;
+    }
+
+    public void setLiked(){
+        this.image = false;
+    }
+
+    public boolean getImage(){
+        return image;
     }
 }
