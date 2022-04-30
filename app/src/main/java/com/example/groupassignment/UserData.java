@@ -68,6 +68,18 @@ public class UserData {
         return false;
     }
 
+    public void addUserList(ArrayList<User> list){
+        if(list.size()==0){
+
+        }
+        else {
+            for (int i = 0; i < list.size(); i++) {
+                User item = list.get(i);
+                users.add(new User(item.getUsername(), item.getPassword(), item.getCity(), item.getEmail()));
+            }
+        }
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }

@@ -2,14 +2,22 @@ package com.example.groupassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -24,15 +32,20 @@ public class MovieActivity extends AppCompatActivity {
 
     private String movie;
 
+    ArrayList<ReviewStorage> list;
+    ArrayList<ReviewStorage> review;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
+        list = loadData(this);
+
         MovieData myMovieData = MovieData.getInstance();
+        Review myReview = Review.getInstance();
 
         movie = myMovieData.getMovie();
-
 
         back = (ImageButton) findViewById(R.id.movie_back);
         like = (ImageButton) findViewById(R.id.movie_like);
@@ -88,11 +101,28 @@ public class MovieActivity extends AppCompatActivity {
         toReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                review= myReview.readReview(movie);
+                if(review.isEmpty()){
+                    myReview.addToList(list);
+                }
 
                 startActivity(new Intent(MovieActivity.this, GiveReview.class));
             }
         });
 
 
+    }
+    private ArrayList<ReviewStorage> loadData(Context context){
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("review list", null);
+        Type type = new TypeToken<ArrayList<ReviewStorage>>() {}.getType();
+        ArrayList<ReviewStorage> r = gson.fromJson(json, type);
+
+        if (r == null)
+            r = new ArrayList<>();
+
+        return r;
     }
 }
