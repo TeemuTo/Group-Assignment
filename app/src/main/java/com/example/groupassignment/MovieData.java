@@ -13,13 +13,7 @@ public class MovieData {
 
     //Singleton
     private static MovieData instance = null;
-    private String film;
-    private String rating;
 
-    private boolean image = true;
-
-    private ArrayList<String> favorites;
-    private ArrayList<String> search;
 
     public static MovieData getInstance(){
         if(instance == null) {
@@ -27,12 +21,16 @@ public class MovieData {
         }
         return instance;
     }
+    private String film;
+
+    private boolean image = true;
 
     private ArrayList<Movie> movies;
+    private ArrayList<String> favorites;
+    private ArrayList<String> search;
 
     public MovieData(){
         movies = new ArrayList<Movie>();
-        movies.add(new Movie("Elokuva", "1 t 30 min", "6.9", 15, "Elokuva kertoo elokuvista."));
 
         favorites = new ArrayList<String>();
         favorites.add("No movies yet");
@@ -46,6 +44,15 @@ public class MovieData {
             search.add(movie.getFilm());
         }
         return search;
+    }
+
+    public void addRate(String movie, String averageRating){
+        for(int i=0; i<movies.size();i++){
+            Movie m = movies.get(i);
+            if(m.getFilm().equals(movie)){
+                movies.set(i, new Movie(m.getFilm(), m.getDuration(), averageRating, m.getStory()));
+            }
+        }
     }
 
     public void setMovie(String movie){
@@ -66,28 +73,14 @@ public class MovieData {
         return "no time";
     }
 
-    public void addRate(String rate){
-        this.rating = rate;
-    }
-
     public String getrate(){
         for(int i=0;i<movies.size();i++){
             Movie movie = movies.get(i);
             if(film.equals(movie.getFilm())){
-                return movie.getrating();
+                return  movie.getRating();
             }
         }
         return "0.0";
-    }
-
-    public int getAge(){
-        for(int i=0;i<movies.size();i++){
-            Movie movie = movies.get(i);
-            if(film.equals(movie.getFilm())){
-                return (int) movie.getAgeRate();
-            }
-        }
-        return (int) 99;
     }
 
     public String getSummary(){
@@ -103,6 +96,7 @@ public class MovieData {
     public void addFavorite(String movie){
         favorites.add(movie);
     }
+
 
     public void removeFavorite(String movie){
         if(favorites.size()==1){

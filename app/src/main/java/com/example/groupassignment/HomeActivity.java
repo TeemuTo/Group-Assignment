@@ -1,11 +1,13 @@
 package com.example.groupassignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,8 +24,18 @@ import android.widget.Toast;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 
+import org.xml.sax.SAXException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -36,6 +48,9 @@ public class HomeActivity extends AppCompatActivity {
 
     private String movie;
 
+    private final OkHttpClient client = new OkHttpClient();
+    final String TAG = "kokeilu";
+
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> name;
 
@@ -43,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getShow();
 
         MovieData myMovieData = MovieData.getInstance();
 
@@ -184,5 +200,48 @@ public class HomeActivity extends AppCompatActivity {
     public void openWebview(){
         Intent intent = new Intent(this, Webview.class);
         startActivity(intent);
+    }
+
+    void getShow(){
+
+        Request request = new Request.Builder()
+                .url("https://www.finnkino.fi/xml/Schedule/?area=1018&dt=01.05.2022")
+                        .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                Log.d(TAG, "onResponse: " + Thread.currentThread().getId());
+
+                if (response.isSuccessful()) {
+
+
+
+                    try {
+                        ShowXMLParser showXMLParser = new ShowXMLParser();
+                        ArrayList<Show> shows = showXMLParser.parse(response.body().byteStream());
+                        Log.d(TAG, "onResponse: "+shows);
+                    } catch (SAXException e){
+                        e.printStackTrace();
+                    }
+
+
+
+
+                }
+                else {
+                    ResponseBody responseBody = response.body();
+                    String body = responseBody.string();
+                    Log.d(TAG, "onResponse: " + body);
+
+                }
+            }
+        });
+
     }
 }

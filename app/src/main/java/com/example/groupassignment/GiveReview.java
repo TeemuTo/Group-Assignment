@@ -98,7 +98,7 @@ public class GiveReview extends AppCompatActivity {
                     //Change visibility (only listview is visible and the movie logo)
                     review = myReview.readReview(movie);
                     averageReview = myReview.amountOfStars(movie)/review.size();
-                    myMovieData.addRate(String.valueOf(averageReview));
+                    myMovieData.addRate(String.valueOf(averageReview), movie);
                     saveData(GiveReview.this, review);
                 }
                 else{
