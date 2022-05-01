@@ -5,6 +5,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class MovieData {
@@ -12,6 +14,7 @@ public class MovieData {
     //Singleton
     private static MovieData instance = null;
     private String film;
+    private String rating;
 
     private boolean image = true;
 
@@ -63,11 +66,15 @@ public class MovieData {
         return "no time";
     }
 
-    public String getimdb(){
+    public void addRate(String rate){
+        this.rating = rate;
+    }
+
+    public String getrate(){
         for(int i=0;i<movies.size();i++){
             Movie movie = movies.get(i);
             if(film.equals(movie.getFilm())){
-                return movie.getIMDB();
+                return movie.getrating();
             }
         }
         return "0.0";
@@ -119,10 +126,11 @@ public class MovieData {
         }
         return favorites;
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void sortByIMDB(){
-        Comparator<Movie> compare = Comparator.comparing(Movie::getIMDB);
+    public ArrayList<String> sortByMovie(){
+        ArrayList<String> sortMovie = new ArrayList<>();
+        sortMovie = favorites;
+        Collections.sort(sortMovie);
+        return sortMovie;
     }
     public void setLike(){
         this.image = true;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Review {
 
     private String rating;
+    private int sum = 0;
     //Singleton
     private static Review instance = null;
 
@@ -59,6 +60,16 @@ public class Review {
             }
         }
         return reviewList;
+    }
+
+    public int amountOfStars(String movie){
+        for(int i=0; i<reviews.size();i++){
+            ReviewStorage review = reviews.get(i);
+            if(review.getKino().equals(movie)){
+                sum=sum+Integer.parseInt(getRate());
+            }
+        }
+        return sum;
     }
 
     public void setRate(String rate){

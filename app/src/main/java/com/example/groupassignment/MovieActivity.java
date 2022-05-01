@@ -60,7 +60,7 @@ public class MovieActivity extends AppCompatActivity {
         //image is setImageResource
         title.setText(movie);
         duration.setText(myMovieData.getTime());
-        IMDB.setText(myMovieData.getimdb());
+        IMDB.setText(myMovieData.getrate());
         story.setText(myMovieData.getSummary());
 
         if(myMovieData.getImage()){

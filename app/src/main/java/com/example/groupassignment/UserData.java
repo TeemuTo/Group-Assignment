@@ -103,12 +103,12 @@ public class UserData {
             char c = password.charAt(i);
 
             if(checkNum(c)){countI++;}
-            else if (checkLower(c)){countL++;}
+            //else if (checkLower(c)){countL++;}
             else if (checkCapital(c)){countC++;}
-            else if (checkSpecial(c)){countS++;}
+            //else if (checkSpecial(c)){countS++;}
             else return false;
         }
-        return (countC >=2 && countI >=2 && countL>=2 && countS>=2);
+        return (countC >=2 && countI >=2);
     }
     public static boolean checkCapital(char c){
         c = Character.toUpperCase(c);
@@ -123,6 +123,7 @@ public class UserData {
     public static boolean checkNum(char c){
         return (c>='0' && c<='9');
     }
+
     public static boolean checkSpecial(char c){
         String specialCharacters=" !#$%&'()*+,-./:;<=>?@[]^_`{|}";
         if(specialCharacters.contains(Character.toString(c))){

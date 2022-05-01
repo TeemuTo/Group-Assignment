@@ -43,6 +43,7 @@ public class GiveReview extends AppCompatActivity {
 
     private String user;
     private String movie;
+    private float averageReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class GiveReview extends AppCompatActivity {
                     //rating is added
                     //Change visibility (only listview is visible and the movie logo)
                     review = myReview.readReview(movie);
+                    averageReview = myReview.amountOfStars(movie)/review.size();
+                    myMovieData.addRate(String.valueOf(averageReview));
                     saveData(GiveReview.this, review);
                 }
                 else{

@@ -50,6 +50,15 @@
             android:background="@color/yellow"
             android:alpha="0.5"/>
 
+        <Spinner
+            android:id="@+id/SortSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/FavoriteToolbar"
+            android:layout_alignParentRight="true"
+            android:background="@color/yellow"
+            android:textAlignment="center" />
+
     </RelativeLayout>
 
 
