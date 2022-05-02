@@ -63,7 +63,8 @@ public class MovieActivity extends AppCompatActivity {
         IMDB.setText(myMovieData.getrate());
         story.setText(myMovieData.getSummary());
 
-        if(myMovieData.getImage()){
+
+        if(myMovieData.findFavorite(movie)){
             like.setImageResource(R.drawable.ic_movie_like);
         }
         else{

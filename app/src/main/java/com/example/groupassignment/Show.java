@@ -18,15 +18,15 @@ public class Show {
         '}';
     }
 
-    public String getTitle(String Title) {
-        return Title;
+    public String getFilm() {
+        return movie;
     }
 
     public void setTitle(String Title) {
         this.movie = Title;
     }
 
-    public String getLengthInMinutes() {
+    public String getDuration() {
         return duration;
     }
 

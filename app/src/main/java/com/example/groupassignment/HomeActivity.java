@@ -150,8 +150,8 @@ public class HomeActivity extends AppCompatActivity {
         searchlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                movie = name.get(i);
-                myMovieData.setMovie(movie);
+                String item = adapterView.getItemAtPosition(i).toString();
+                myMovieData.setMovie(item);
                 startActivity(new Intent(HomeActivity.this, MovieActivity.class));
             }
         });

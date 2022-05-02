@@ -42,7 +42,6 @@ public class FavoriteActivity extends AppCompatActivity {
                 startActivity(new Intent(FavoriteActivity.this, HomeActivity.class));
             }
         });
-        //do filter
 
         name = myMovieData.listFavorite();
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, name);

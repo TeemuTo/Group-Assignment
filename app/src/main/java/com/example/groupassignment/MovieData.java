@@ -31,7 +31,8 @@ public class MovieData {
 
     public MovieData(){
         movies = new ArrayList<Movie>();
-
+        movies.add(new Movie("Elokuva", "123", "6.9", "Tarinaosio"));
+        movies.add(new Movie("Toka", "123", "6.9", "Toisenlainen leffa"));
         favorites = new ArrayList<String>();
         favorites.add("No movies yet");
 
@@ -46,14 +47,6 @@ public class MovieData {
         return search;
     }
 
-    public void addRate(String movie, String averageRating){
-        for(int i=0; i<movies.size();i++){
-            Movie m = movies.get(i);
-            if(m.getFilm().equals(movie)){
-                movies.set(i, new Movie(m.getFilm(), m.getDuration(), averageRating, m.getStory()));
-            }
-        }
-    }
 
     public void setMovie(String movie){
         this.film = movie;
@@ -98,6 +91,7 @@ public class MovieData {
     }
 
 
+
     public void removeFavorite(String movie){
         if(favorites.size()==1){
             favorites.add("No movies yet");
@@ -112,6 +106,18 @@ public class MovieData {
             }
         }
         return false;
+    }
+
+    public boolean findFavorite(String movie){
+        if(favorites.size()==1){
+            return true;
+        }
+        for (int i=0;i<favorites.size();i++){
+            if(movie.equals(favorites.get(i))){
+                return false;
+            }
+        }
+        return true;
     }
 
     public ArrayList<String> listFavorite(){
