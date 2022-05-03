@@ -31,8 +31,8 @@ public class MovieData {
 
     public MovieData(){
         movies = new ArrayList<Movie>();
-        movies.add(new Movie("Elokuva", "123", "6.9", "Tarinaosio"));
-        movies.add(new Movie("Toka", "123", "6.9", "Toisenlainen leffa"));
+        movies.add(new Movie("leffa 1", "123", "5.9",  "Tarinaosio"));
+        movies.add(new Movie("Harry potter", "12","6.9", "Toisenlainen leffa"));
         favorites = new ArrayList<String>();
         favorites.add("No movies yet");
 
@@ -70,7 +70,7 @@ public class MovieData {
         for(int i=0;i<movies.size();i++){
             Movie movie = movies.get(i);
             if(film.equals(movie.getFilm())){
-                return  movie.getRating();
+                return movie.getRating();
             }
         }
         return "0.0";
